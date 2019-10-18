@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    background-image: url(imagenes/tenis.jpg);
+}
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color:white;
+    color: black;
+    text-align: center;
+}
+#central {
+    text-align: center;
+    margin: 15%;
+   
+}
+#central form {
+    border-radius: 3px;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(186, 240, 105, 0.63) ;
+    box-shadow: inset 0 0 10px #000;
+    margin: 100px auto;
+    
+}
+form input {
+    margin-top: 10px;
+}
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

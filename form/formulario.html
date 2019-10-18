@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+<body>
+    <header>
+        <h1>MATCHPOINT</h1>
+    </header>
+    <div id="central">
+        <form onsubmit="return validate();">
+            <p>Nombre: <input type="text" id="clientName" name="clientName" ></p>
+            <p>Apellidos: <input type="text" id="clientSubname" name="clientSubname" ></p>
+            <p>DNI: <input type="text" id="dni" name="dni" ></p>
+            <p>Fecha: <input type="date" id="date" name="date" ></p>
+            <p>Hora entrada: <input type="time" id="startTime" name="startTime" ></p>
+            <p>Hora salida: <input type="time" id="exitTime" name="exitTime" ></p>
+            <p>Email: <input type="email" id="email" name="email" ></p>
+            <input type="submit" name="send">
+        </form>
+    </div>
+
+    <footer>
+        <span><strong>Jose Antonio Bretones García 2019/2020</strong></span>
+    </footer>
+    <script src="validate.js"></script>
+</body>
+
+</html>
