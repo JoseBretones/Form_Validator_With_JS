@@ -16,14 +16,40 @@
     </header>
     <div id="central">
         <form onsubmit="return validate();">
-            <p>Nombre: <input type="text" id="clientName" name="clientName" ></p>
-            <p>Apellidos: <input type="text" id="clientSubname" name="clientSubname" ></p>
-            <p>DNI: <input type="text" id="dni" name="dni" ></p>
-            <p>Fecha: <input type="date" id="date" name="date" ></p>
-            <p>Hora entrada: <input type="time" id="startTime" name="startTime" ></p>
-            <p>Hora salida: <input type="time" id="exitTime" name="exitTime" ></p>
-            <p>Email: <input type="email" id="email" name="email" ></p>
+            <label for="clientname">Nombre: </label>
+            <input type="text" id="clientName" name="clientName" >
+            <br>
+            </br>
+            <label for="clientSubname">Apellidos: </label>
+            <input type="text" id="clientSubname" name="clientSubname" >
+            <br>
+            </br>
+            <label for="dni">DNI: </label>
+            <input type="text" id="dni" name="dni">
+            <br>
+            </br>
+            <label for="telephone">Telefono: </label>
+            <input type="number" id="telephone" name="telephone">
+            <br>
+            </br>
+            <label for="date">Fecha: </label>
+            <input type="date" id="date" name="date">
+            <br>
+            </br>
+            <label for="startTime">Entrada: </label>
+            <input type="time" id="startTime" name="startTime">
+            <br>
+            </br>
+            <label for="exitTime">Salida: </label>
+            <input type="time" id="exitTime" name="exitTime">
+            <br>
+            </br>
+            <label for="email">Email: </label> 
+            <input type="email" id="email" name="email">
+            <br>
+            </br>
             <input type="submit" name="send">
+            <input type="reset" name="reset">
         </form>
     </div>
 
