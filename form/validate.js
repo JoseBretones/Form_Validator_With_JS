@@ -74,9 +74,7 @@ function init (){
 }
 
 function validate(){
-    alert("eooo");
     validateFirstName();
-    alert(validated);
     if(validated){
         form.submit();
     }
@@ -84,12 +82,9 @@ function validate(){
 
 function validateFirstName (){
     var nameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
-    alert("He entrado");
     if(!nameExpression.test(form.clientName.value)){
-        alert("Nombre incorrecto" + form.clientName.value);
         form.clientName.classList.add("error");
         form.clientName.focus();
-        validated = false;
     } else {
         validated = true;
     }
