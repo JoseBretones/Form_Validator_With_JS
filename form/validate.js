@@ -64,6 +64,7 @@
 // function $ (selector){
 //     return document.querySelector(selector);
 // }
+window.addEventListener("load",init,false); /* Te faltaba esto payaso */
 var form = document.getElementById("form");
 var validated = false;
 
