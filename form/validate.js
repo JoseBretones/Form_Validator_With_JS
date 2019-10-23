@@ -64,6 +64,8 @@
 // function $ (selector){
 //     return document.querySelector(selector);
 // }
+
+
 window.addEventListener("load",init,false);
 var form = document.getElementById("form");
 var validated = false;
@@ -75,6 +77,8 @@ function init (){
 
 function validate(){
     validateFirstName();
+    validateSubnames();
+    validateDni();
     if(validated){
         form.submit();
     }
@@ -84,25 +88,90 @@ function validate(){
 
 //First letter must be uppercase
 function validateFirstName (){
-    var nameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+    var nameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[s]*)+$/;
     if(!nameExpression.test(form.clientName.value)){
         form.clientName.classList.add("error");
         form.clientName.focus();
-    if(document.getElementById("clientNameSpan") == null){
-        var span = document.createElement("span");
-        span.setAttribute("id","clientNameSpan");
-        span.setAttribute("class","spanErrors");
-        span.innerHTML="Nombre incorrecto";
-        $("#clientNameLabel").appendChild(span);
-    }
+        if(document.getElementById("clientNameSpan") == null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientNameSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML="Nombre incorrecto";
+            $("#clientNameLabel").appendChild(span);
+            validated = false;
+        }
     } else {
         validated = true;
-        if(document.getElementById("clientNameSpan") == null){
-            //AQUI ME QUEDÉ
-        }
-        alert("envia datos");
     }
+    
+}
 
+//Pressing a key clears the error message
+function spanClientNameRemove (){
+    if(document.getElementById("clientNameSpan") != null){
+        var label = document.getElementById("clientNameLabel");
+        var span = document.getElementById("clientNameSpan");
+        label.removeChild(span);
+        form.clientName.classList.remove("error");
+    }
+}
+
+//First letter must be uppercase
+function validateSubnames(){
+    var subnameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[s]*)+$/;
+    if(!subnameExpression.test(form.clientSubname.value)){
+        form.clientSubname.classList.add("error");
+        form.clientSubname.focus();
+        if(document.getElementById("clientSubnameSpan") == null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientSubnameSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML = "Apellidos incorrectos";
+            $("#clientSubnameLabel").appendChild(span);
+            validated = false;
+        }
+    }else{
+        validated = true;
+    }    
+}
+
+//Pressing a key clears the error message
+function spanClientSubnameRemove (){
+    if(document.getElementById("clientSubnameSpan") != null){
+        var label = document.getElementById("clientSubnameLabel");
+        var span = document.getElementById("clientSubnameSpan");
+        label.removeChild(span);
+        form.clientSubname.classList.remove("error");
+    }
+}
+
+
+function validateDni(){
+    var dniExpression = /[0-9]{6}[a-z]?$/;
+    if(!dniExpression.test(form.dni.value)){
+        form.dni.classList.add("error");
+        form.dni.focus();
+        if(document.getElementById("clientDniSpan") == null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientDniSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML = "DNI incorrecto";
+            $("#clientDniLabel").appendChild(span);
+            validated = false;
+        }
+    }else{
+        validated = true;
+    }
+}
+
+//Pressing a key clears the error message
+function spanClientDniRemove (){
+    if(document.getElementById("clientDniSpan") != null){
+        var label = document.getElementById("clientDniLabel");
+        var span = document.getElementById("clientDniSpan");
+        label.removeChild(span);
+        form.dni.classList.remove("error");
+    }
 }
 
 function $ (selector){

@@ -17,17 +17,17 @@
     <div id="central">
         <form id="form" method="POST">
             <label id="clientNameLabel" for="clientname">
-                Nombre: <input type="text" id="clientName" name="clientName" >
+                Nombre: <input type="text" id="clientName" name="clientName" onkeyup="spanClientNameRemove()">
             </label>            
             <br>
             </br>
-            <label for="clientSubname">
-                Apellidos: <input type="text" id="clientSubname" name="clientSubname" >
+            <label id="clientSubnameLabel" for="clientSubname">
+                Apellidos: <input type="text" id="clientSubname" name="clientSubname" onkeyup="spanClientSubnameRemove()">
             </label>            
             <br>
             </br>
-            <label for="dni">
-                DNI: <input type="text" id="dni" name="dni">
+            <label id="clientDniLabel" for="dni">
+                DNI: <input type="text" id="dni" name="dni" onkeyup="spanClientDniRemove()">
             </label>            
             <br>
             </br>
