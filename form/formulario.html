@@ -31,18 +31,18 @@
             </label>            
             <br>
             </br>
-            <label for="telephone">
-                Telefono:  <input type="tel" id="telephone" name="telephone">
+            <label id="clientTelephoneLabel" for="telephone">
+                Telefono:  <input type="tel" id="telephone" name="telephone" onkeyup="spanClientTelephoneRemove()">
             </label>
             <br>
             </br>
-            <label for="date">
-                Fecha: <input type="date" id="date" name="date">
+            <label id="clientDateLabel" for="date">
+                Fecha: <input type="date" id="date" name="date" value="01-01-2000" onkeyup="spanClientDateRemove()">
             </label>            
             <br>
             </br>
-            <label for="email">
-                Email: <input type="email" id="email" name="email"> 
+            <label id="clientEmailLabel" for="email">
+                Email: <input type="email" id="email" name="email" onkeyup="spanClientEmailremove()"> 
             </label>            
             <br>
             </br>

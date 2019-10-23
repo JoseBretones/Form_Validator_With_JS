@@ -1,71 +1,3 @@
-//JOSE ANTONIO BRETONES GARCIA
-// function validate() {
-//     var clientName , clientSubname , dni , date, startTime , exitTime ,
-//     email , telephone , expressionEmail , expressionDni , expressionTelephone , actualDate , expressionNotSpace , dd , mm , yyyy ;
-//     clientName = document.getElementById("clientName").value;
-//     clientSubname = document.getElementById("clientSubname").value;
-//     dni = document.getElementById("dni").value;
-//     date = document.getElementById("date").value;
-//     startTime = document.getElementById("startTime").value;
-//     exitTime = document.getElementById("exitTime").value;
-//     email = document.getElementById("email").value;
-//     telephone = document.getElementById("telephone").value;
-//     actualDate = new Date();
-//     dd = actualDate.getDate();
-//     mm = actualDate.getMonth()+1;
-//     yyyy = actualDate.getFullYear();
-//     actualDate = yyyy + "-" + mm + "-" + dd;
-//     expressionEmail = /^\w+@\w+\.+[a-z]/;
-//     expressionDni = /^\d{8}[a-zA-Z]$/;
-//     expressionTelephone = /^([0-9]+){9}$/;
-//     expressionNotSpace = /\s/;
-
-
-//     if(clientName === "" || clientSubname === "" || dni === "" || date === "" ||
-//     startTime === "" || exitTime === "" || email=== ""){
-//         alert("Todos los campos son obligatorios");
-//         return false;
-//     }
-//     else if (clientName.length>20){
-//         alert("Nombre demasiado largo");
-//         return false;
-//     }
-//     else if(clientSubname.length>40){
-//         alert("Apellidos demasiado largos");
-//         return false;
-//     }
-//     else if(email.length>100){
-//         alert("Email demasiado largo");
-//         return false;
-//     }
-//     else if (!expressionEmail.test(email)){
-//         alert("Email introducido con formato incorrecto");
-//         return false;
-//     }
-//     else if(expressionNotSpace.test(telephone)){
-//         alert("Error, número de teléfono con espacios en blanco encontrado");
-//         return false;
-//     }
-//     else if(!expressionTelephone.test(telephone)){
-//         alert("Número de telefono incorrecto");
-//         return false;
-//     }
-//     else if (!expressionDni.test(dni)){
-//         alert("Formato incorrecto para DNI");
-//         return false;
-//     }
-//     //if the date entered is less than the current date it will be incorrect
-//     else if(date < actualDate){
-//         alert("Fecha incorrecta");
-//         return false;
-//     }
-//     alert("¡ENVIADO, TUS DATOS SON CORRECTOS! ")
-// }
-// function $ (selector){
-//     return document.querySelector(selector);
-// }
-
-
 window.addEventListener("load",init,false);
 var form = document.getElementById("form");
 var validated = false;
@@ -75,12 +7,17 @@ function init (){
     form.send.addEventListener("click",validate,false);
 }
 
+//General function for form validation
 function validate(){
     validateFirstName();
     validateSubnames();
     validateDni();
+    validateTelephone ();
+    validateDate();
+    validateEmail();
     if(validated){
         form.submit();
+        alert("DATOS ENVIADOS CORRECTAMENTE");
     }
 
 }
@@ -89,7 +26,13 @@ function validate(){
 //First letter must be uppercase
 function validateFirstName (){
     var nameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[s]*)+$/;
-    if(!nameExpression.test(form.clientName.value)){
+    if(form.clientName.value == "" && document.getElementById("clientNameSpanWhiteSpace") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientNameSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML="Nombre incompleto";
+        $("#clientNameLabel").appendChild(span);
+    }else if(!nameExpression.test(form.clientName.value)){
         form.clientName.classList.add("error");
         form.clientName.focus();
         if(document.getElementById("clientNameSpan") == null){
@@ -114,12 +57,21 @@ function spanClientNameRemove (){
         label.removeChild(span);
         form.clientName.classList.remove("error");
     }
+    if(document.getElementById("clientNameSpanWhitespace")){
+        
+    }
 }
 
 //First letter must be uppercase
 function validateSubnames(){
     var subnameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[s]*)+$/;
-    if(!subnameExpression.test(form.clientSubname.value)){
+    if(form.clientSubname.value == "" && document.getElementById("clientSubnameSpanWhiteSpace") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientSubnameSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML = "Apellidos incompletos";
+        $("#clientSubnameLabel").appendChild(span);
+    }else if(!subnameExpression.test(form.clientSubname.value)){
         form.clientSubname.classList.add("error");
         form.clientSubname.focus();
         if(document.getElementById("clientSubnameSpan") == null){
@@ -147,8 +99,14 @@ function spanClientSubnameRemove (){
 
 
 function validateDni(){
-    var dniExpression = /[0-9]{6}[a-z]?$/;
-    if(!dniExpression.test(form.dni.value)){
+    var dniExpression = /[0-9]{6}[A-Z]?$/;
+    if(form.dni.value == "" && document.getElementById("clientDniSpanWhiteSpace") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientDniSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML = "DNI incompleto";
+        $("#clientDniLabel").appendChild(span);
+    }else if(!dniExpression.test(form.dni.value)){
         form.dni.classList.add("error");
         form.dni.focus();
         if(document.getElementById("clientDniSpan") == null){
@@ -173,6 +131,117 @@ function spanClientDniRemove (){
         form.dni.classList.remove("error");
     }
 }
+
+function validateTelephone (){
+    var telephoneExpression = /[0-9]{9}$/;
+    if(form.telephone.value == "" && document.getElementById("clientTelephoneSpanWhiteSpace") == null ){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientTelephoneSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML = "Telefono incompleto";
+        $("#clientTelephoneLabel").appendChild(span);
+    }else if(!telephoneExpression.test(form.telephone.value)){
+        form.telephone.classList.add("error");
+        form.telephone.focus();
+        if(document.getElementById("clientTelephoneSpan")==null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientTelephoneSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML = "Telefono incorrecto";
+            $("#clientTelephoneLabel").appendChild(span);
+            validated = false;
+        }
+    }else{
+        validated = true;
+    }
+}
+
+//Pressing a key clears the error message
+function spanClientTelephoneRemove (){
+    if(document.getElementById("clientTelephoneSpan") != null){
+        var label = document.getElementById("clientTelephoneLabel");
+        var span = document.getElementById("clientTelephoneSpan");
+        label.removeChild(span);
+        form.telephone.classList.remove("error");
+    }
+}
+
+//Date format YYYY-MM-DD
+function validateDate(){
+    var actualDate = new Date ();
+    var dd = actualDate.getDate();
+    var mm = actualDate.getMonth()+1;
+    var yyyy = actualDate.getFullYear();
+    actualDate = yyyy + "-" + mm + "-" + dd;
+    var dateExpression = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+    if(form.date.value == "" && document.getElementById("clientDateSpanWhiteSpace") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientDateSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML = "Fecha incompleta";
+        $("#clientDateLabel").appendChild(span);
+    }else if(!dateExpression.test(form.date.value) || form.date.value < actualDate){
+        form.date.classList.add("error");
+        form.date.focus();
+        if(document.getElementById("clientDateSpan")==null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientDateSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML = "Fecha incorrecta";
+            $("#clientDateLabel").appendChild(span);
+            validated = false;
+        }
+    }else{
+        validated = true;
+    }
+
+}
+
+//Pressing a key clears the error message
+function spanClientDateRemove (){
+    if(document.getElementById("clientDateSpan") != null){
+        var label = document.getElementById("clientDateLabel");
+        var span = document.getElementById("clientDateSpan");
+        label.removeChild(span);
+        form.date.classList.remove("error");
+    }
+}
+
+function validateEmail(){
+    var emailExpression = /^\w+@\w+\.+[a-z]/;
+    if(form.email.value == "" && document.getElementById("clientEmailSpanWhiteSpace") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientEmailSpanWhiteSpace");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML = "Email incompleto";
+        $("#clientEmailLabel").appendChild(span);
+    }else if(!emailExpression.test(form.email.value)){
+        form.email.classList.add("error");
+        form.email.focus();
+        if(document.getElementById("clientEmailSpan")==null){
+            var span = document.createElement("span");
+            span.setAttribute("id","clientEmailSpan");
+            span.setAttribute("class","spanErrors");
+            span.innerHTML = "Email incorrecto";
+            $("#clientEmailLabel").appendChild(span);
+            validated = false;
+        }
+    }else{
+        validated = true;
+    }
+}
+
+//Pressing a key clears the error message
+function spanClientEmailremove(){
+    if(document.getElementById("clientEmailSpan") != null){
+        var label = document.getElementById("clientEmailLabel");
+        var span = document.getElementById("clientEmailSpan");
+        label.removeChild(span);
+        form.email.classList.remove("error");
+    }
+}
+
+
 
 function $ (selector){
     return document.querySelector(selector);
