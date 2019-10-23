@@ -16,40 +16,38 @@
     </header>
     <div id="central">
         <form id="form" method="POST">
-            <label for="clientname">Nombre: </label>
-            <input type="text" id="clientName" name="clientName" >
+            <label id="clientNameLabel" for="clientname">
+                Nombre: <input type="text" id="clientName" name="clientName" >
+            </label>            
             <br>
             </br>
-            <label for="clientSubname">Apellidos: </label>
-            <input type="text" id="clientSubname" name="clientSubname" >
+            <label for="clientSubname">
+                Apellidos: <input type="text" id="clientSubname" name="clientSubname" >
+            </label>            
             <br>
             </br>
-            <label for="dni">DNI: </label>
-            <input type="text" id="dni" name="dni">
+            <label for="dni">
+                DNI: <input type="text" id="dni" name="dni">
+            </label>            
             <br>
             </br>
-            <label for="telephone">Telefono: </label>
-            <input type="number" id="telephone" name="telephone">
+            <label for="telephone">
+                Telefono:  <input type="tel" id="telephone" name="telephone">
+            </label>
             <br>
             </br>
-            <label for="date">Fecha: </label>
-            <input type="date" id="date" name="date">
+            <label for="date">
+                Fecha: <input type="date" id="date" name="date">
+            </label>            
             <br>
             </br>
-            <label for="startTime">Entrada: </label>
-            <input type="time" id="startTime" name="startTime">
+            <label for="email">
+                Email: <input type="email" id="email" name="email"> 
+            </label>            
             <br>
             </br>
-            <label for="exitTime">Salida: </label>
-            <input type="time" id="exitTime" name="exitTime">
-            <br>
-            </br>
-            <label for="email">Email: </label> 
-            <input type="email" id="email" name="email">
-            <br>
-            </br>
-            <input type="button" name="send" value="Enviar">
-            <input type="reset" name="reset">
+            <input class="buttons" type="button" name="send" value="Enviar">
+            <input class="buttons" type="reset" name="reset">
         </form>
     </div>
 

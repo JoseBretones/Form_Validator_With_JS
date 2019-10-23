@@ -1,7 +1,7 @@
 //JOSE ANTONIO BRETONES GARCIA
 // function validate() {
-//     var clientName , clientSubname , dni , date, startTime , exitTime , 
-//     email , telephone , expressionEmail , expressionDni , expressionTelephone , actualDate , expressionNotSpace , dd , mm , yyyy ; 
+//     var clientName , clientSubname , dni , date, startTime , exitTime ,
+//     email , telephone , expressionEmail , expressionDni , expressionTelephone , actualDate , expressionNotSpace , dd , mm , yyyy ;
 //     clientName = document.getElementById("clientName").value;
 //     clientSubname = document.getElementById("clientSubname").value;
 //     dni = document.getElementById("dni").value;
@@ -21,7 +21,7 @@
 //     expressionNotSpace = /\s/;
 
 
-//     if(clientName === "" || clientSubname === "" || dni === "" || date === "" || 
+//     if(clientName === "" || clientSubname === "" || dni === "" || date === "" ||
 //     startTime === "" || exitTime === "" || email=== ""){
 //         alert("Todos los campos son obligatorios");
 //         return false;
@@ -64,7 +64,7 @@
 // function $ (selector){
 //     return document.querySelector(selector);
 // }
-window.addEventListener("load",init,false); /* Te faltaba esto payaso */
+window.addEventListener("load",init,false);
 var form = document.getElementById("form");
 var validated = false;
 
@@ -78,17 +78,36 @@ function validate(){
     if(validated){
         form.submit();
     }
+
 }
 
+
+//First letter must be uppercase
 function validateFirstName (){
     var nameExpression = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
     if(!nameExpression.test(form.clientName.value)){
         form.clientName.classList.add("error");
         form.clientName.focus();
+    if(document.getElementById("clientNameSpan") == null){
+        var span = document.createElement("span");
+        span.setAttribute("id","clientNameSpan");
+        span.setAttribute("class","spanErrors");
+        span.innerHTML="Nombre incorrecto";
+        $("#clientNameLabel").appendChild(span);
+    }
     } else {
         validated = true;
+        if(document.getElementById("clientNameSpan") == null){
+            //AQUI ME QUEDÉ
+        }
+        alert("envia datos");
     }
-    
+
 }
+
+function $ (selector){
+    return document.querySelector(selector);
+}
+
 
 
